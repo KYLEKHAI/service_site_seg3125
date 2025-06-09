@@ -1,35 +1,120 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header.jsx";
+import HomePage from "./components/HomePage.jsx";
+import RoomSelection from "./components/RoomSelection.jsx";
+import EquipmentSelection from "./components/EquipmentSelection.jsx";
+import DateTimeSelection from "./components/DateTimeSelection.jsx";
+import PremiumStudioSelection from "./components/PremiumStudioSelection.jsx";
+import SecureBooking from "./components/SecureBooking.jsx";
+import BookingConfirmation from "./components/BookingConfirmation.jsx";
+import Contact from "./components/Contact.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState("home");
+  const [bookingData, setBookingData] = useState({
+    bookingType: null,
+    room: null,
+    studio: null,
+    equipment: [],
+    date: null,
+    time: null,
+    duration: null,
+    totalPrice: 0,
+    contactInfo: {},
+    depositPaid: false,
+  });
+
+  const resetBooking = () => {
+    setCurrentPage("home");
+    setBookingData({
+      bookingType: null,
+      room: null,
+      studio: null,
+      equipment: [],
+      date: null,
+      time: null,
+      duration: null,
+      totalPrice: 0,
+      contactInfo: {},
+      depositPaid: false,
+    });
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":
+        return (
+          <HomePage
+            setCurrentPage={setCurrentPage}
+            setBookingData={setBookingData}
+          />
+        );
+      case "contact":
+        return <Contact setCurrentPage={setCurrentPage} />;
+      case "room-selection":
+        return (
+          <RoomSelection
+            setCurrentPage={setCurrentPage}
+            bookingData={bookingData}
+            setBookingData={setBookingData}
+          />
+        );
+      case "equipment-selection":
+        return (
+          <EquipmentSelection
+            setCurrentPage={setCurrentPage}
+            bookingData={bookingData}
+            setBookingData={setBookingData}
+          />
+        );
+      case "datetime-selection":
+        return (
+          <DateTimeSelection
+            setCurrentPage={setCurrentPage}
+            bookingData={bookingData}
+            setBookingData={setBookingData}
+          />
+        );
+      case "premium-studios":
+        return (
+          <PremiumStudioSelection
+            setCurrentPage={setCurrentPage}
+            bookingData={bookingData}
+            setBookingData={setBookingData}
+          />
+        );
+      case "secure-booking":
+        return (
+          <SecureBooking
+            setCurrentPage={setCurrentPage}
+            bookingData={bookingData}
+            setBookingData={setBookingData}
+          />
+        );
+      case "confirmation":
+        return (
+          <BookingConfirmation
+            bookingData={bookingData}
+            resetBooking={resetBooking}
+          />
+        );
+      default:
+        return (
+          <HomePage
+            setCurrentPage={setCurrentPage}
+            setBookingData={setBookingData}
+          />
+        );
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.js</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Header setCurrentPage={setCurrentPage} />
+      <main className="main-content">{renderPage()}</main>
+    </div>
+  );
 }
 
-export default App
+export default App;

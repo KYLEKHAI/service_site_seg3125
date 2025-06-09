@@ -1,0 +1,165 @@
+.equipment-selection {
+  padding: 40px 0;
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.equipment-card {
+  background-color: #111111;
+  border: 1px solid #222222;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.equipment-card:hover {
+  border-color: #333333;
+  background-color: #151515;
+}
+
+.equipment-card.selected {
+  border-color: #ffffff;
+  background-color: #1a1a1a;
+}
+
+.equipment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.equipment-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.equipment-category {
+  background-color: #222222;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.equipment-description {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.equipment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.equipment-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.equipment-checkbox {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.booking-summary {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.summary-card {
+  background-color: #111111;
+  border: 1px solid #222222;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.summary-item span:first-child {
+  opacity: 0.8;
+}
+
+.summary-item span:last-child {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding-top: 16px;
+  border-top: 1px solid #222222;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .booking-summary {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .equipment-selection {
+    padding: 24px 0;
+  }
+
+  .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .equipment-card {
+    padding: 16px;
+  }
+
+  .summary-card {
+    padding: 20px;
+  }
+}
